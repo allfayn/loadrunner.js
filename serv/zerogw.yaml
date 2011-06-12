@@ -1,0 +1,37 @@
+Server:
+  zmq-io-threads: 1
+  disk-io-threads: 1
+  listen:
+    - host: 0.0.0.0
+      port: 8002
+  status:
+    socket:
+    - !zmq.Bind ipc:///tmp/zerogw
+  error-log:
+    level: 5
+    warning-timeout: 300
+
+Routing:
+  routing: !Prefix ~
+  routing-by: !Uri ~
+  map:
+    "/ws/*":
+      websocket:
+        enabled: yes
+        forward: !zmq.Push
+        - !zmq.Bind "tcp://127.0.0.1:7002"
+        subscribe:
+        - !zmq.Bind "tcp://127.0.0.1:7003"
+  children:
+  - match:
+    - /app/*
+    - /css/*
+    - /lib/*
+    - /index.html
+    static:
+      enabled: yes
+      root: .
+      restrict-root: no
+      index-file: index.html
+      deny-prefixes:
+      - "."

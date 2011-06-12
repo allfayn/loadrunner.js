@@ -1,0 +1,86 @@
+#game {
+    margin: 16px;
+    background: silver;
+    position: relative;
+    padding: 16px;
+
+    #map {
+        position: relative;
+    }
+
+    .object {
+        position: absolute;
+        width: 32px;
+        height: 32px;
+        font-size: 43px;
+        font-family: monospace;
+        overflow: hidden;
+    }
+
+    .object-brick {
+        .object;
+        background: brown;
+        content: '▒'
+    }
+    .object-digbrick {
+        .object;
+        background: none;
+        content: '░'
+    }
+    .object-concrete {
+        .object;
+        background: brown;
+        content: '▓'
+    }
+    .object-ladder {
+        .object;
+        background: none;
+        content: '☰';
+        font-size: 33px;
+    }
+    .object-rope {
+        .object;
+        content: '⎺';
+        font-size: 53px;
+    }
+    .object-user {
+        .object;
+        content: '☺';
+        font-size: 34px;
+        color: green;
+    }
+    .object-monster {
+        .object;
+        content: '♿';
+        font-size: 35px;
+    }
+    .object-gold {
+        .object;
+        content: '☢';
+        font-size: 35px;
+    }
+    .object-door {
+        .object;
+        content: '⚐'
+    }
+
+}
+
+#scorediv {
+    font: 300% sans-serif;
+    padding: 6px;
+    border-radius: 12px;
+    border: solid black 2px;
+    display: inline-block;
+    min-width: 300px;
+    #score {
+        float: right;
+    }
+}
+
+#dead {
+    font: 300% sans-serif;
+    display: inline-block;
+    color: red;
+    margin-left: 30px
+}
